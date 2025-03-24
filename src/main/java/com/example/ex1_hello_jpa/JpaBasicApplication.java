@@ -1,13 +1,19 @@
 package com.example.ex1_hello_jpa;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
-@SpringBootApplication
 public class JpaBasicApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JpaBasicApplication.class, args);
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManager em = emf.createEntityManager();
+        //code
+
+        em.close();
+        emf.close();
     }
 
 }
