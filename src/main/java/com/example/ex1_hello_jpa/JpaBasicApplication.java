@@ -79,12 +79,33 @@ public class JpaBasicApplication {
             em.persist(member2);
 
 
+            영속성 컨텍스트를 플러시하는 방법
+            * em.flush() -> 직접 호출
+            * 트랜잭션 커밋 -> 자동으로 플러시 호출
+            * JPQL 쿼리 실행 -> 자동으로 플러시 호출
+
+
             */
-
+        try {
             Member member = em.find(Member.class, 150L);
-            member .setName("ZZZZZ");
+            member.setName("ZZZZ");
 
-            System.out.println("=====================");
+            em.detach(member); // 영속성 컨텍스트에서 더이상 관리하지 않음
+            em.clear(); // 영속성 컨텍스트를 통으로 다 초기화시켜버린다 (clear는 영속성 컨텍스트를 다 지워버리는 것)
+            // -> 그래서 쿼리가 한번 더 날아간다
+
+
+            Member member1 = em.find(Member.class, 150L);
+
+
+            System.out.println("===================");
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.commit();
+        } finally {
+            em.close();
+        }
+
 
 
             transaction.commit();
