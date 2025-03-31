@@ -1,38 +1,64 @@
 package com.example.ex1_hello_jpa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Member {
 
     @Id
-    private Long id;
-    private String name;
+    private String id;
+
+    private Long age;
+
+    @Column(name = "name")
+    private String userName;
+
+    /*
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob
+    private String description;
+
+    */
+
+
+    public String getId() {
+        return id;
+    }
+
+    public Long getAge() {
+        return age;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Member() {
 
     }
 
-    public Member(String name, Long id) {
-        this.name = name;
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

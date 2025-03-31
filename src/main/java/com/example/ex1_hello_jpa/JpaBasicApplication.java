@@ -85,7 +85,7 @@ public class JpaBasicApplication {
             * JPQL 쿼리 실행 -> 자동으로 플러시 호출
 
 
-            */
+
         try {
             Member member = em.find(Member.class, 150L);
             member.setName("ZZZZ");
@@ -106,7 +106,14 @@ public class JpaBasicApplication {
             em.close();
         }
 
+             */
 
+            Member m = new Member();
+            m.setId("ID_A");
+            m.setUserName("A");
+
+
+            em.persist(m);
 
             transaction.commit();
             // 커밋하는 순간 데이터베이스에 INSERT SQL을 보낸다. (커밋하기 전까지는 그냥 쌓인다)
